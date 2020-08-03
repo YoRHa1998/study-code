@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>柱形图</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.7.0/echarts-en.common.js"></script>
+  </head>
+  <body>
+    <div id="main" style="width: 800px; height: 400px;"></div>
+
+    <script type="text/javascript">
+      //初始化echarts实例
+      const myCharts = echarts.init(document.getElementById("main"));
+
+      //设置图表的配置项和数据
+      const options = {
+        //title:图表的标题
+        title: {
+          text: "echarts入门示例"
+        },
+        grid:{
+            show:true,
+            top:"10%",
+            left:"10%"
+        }, //直角坐标系内绘制网格,用于缩放比例？
+        tooltip: {}, //鼠标移动到图表中的提示，默认开启
+        legend: {
+          data: ["销量", "成本"]
+        }, //图例，里面的data是一个数组
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+          axisPointer: {
+            show: true
+          } //axisPointer:坐标轴指示器，分别写在横纵坐标中
+        }, //横坐标,里面的data也是数组
+        yAxis: {
+          axisPointer: {
+            show: true
+          } //axisPointer:坐标轴指示器，分别写在横纵坐标中
+        }, //纵坐标
+        series: [
+          {
+            name: "销量", //每组数据的系列名
+            type: "line", //图表的类型，bar为柱状图
+            stack:"衣服",//数据堆叠，同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加
+            areaStyle:{},//区域填充样式。
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            data: [5, 20, 36, 10, 10, 20] //每组类型的数据
+          },
+          {
+            name: "成本", //每组数据的系列名
+            type: "line", //图表的类型，bar为柱状图
+            stack:"衣服",//数据堆叠，同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加
+            areaStyle:{},//区域填充样式。
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            data: [50, 50, 16, 13, 15, 20] //每组类型的数据
+          }
+        ] //系列，即图表中的每组数据，数组，每组数据为对象
+      };
+
+      //使用配置创建图表
+      myCharts.setOption(options);
+    </script>
+  </body>
+</html>
